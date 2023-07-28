@@ -69,6 +69,33 @@ function App() {
             Add
           </button>
         </form>
+
+        {todos?.map((todo) => (
+          <div className="mt-4 flex justify-between" key={todo.id}>
+            <div className="flex w-full items-center">
+              <input
+                type="checkbox"
+                id={`checkbox-${todo.id}`}
+                checked={todo.completed}
+                onChange={() => handleChecker(todo.id)}
+              />
+              <label
+                className={`ml-4 block w-full text-xl hover:opacity-40 ${
+                  todo.completed ? "text-neutral-500 line-through" : ""
+                }`}
+                htmlFor={`checkbox-${todo.id}`}
+              >
+                {todo.title}
+              </label>
+            </div>
+            <button
+              className="bg-red-800 px-9 py-2 text-white"
+              onClick={() => handleDelete(todo.id)}
+            >
+              Delete
+            </button>
+          </div>
+        ))}
       </div>
     </>
   );
