@@ -18,7 +18,10 @@ function App() {
     axios
       .post(BASE_URL, { title: newTodos, completed: false })
 
-      .then((res) => setTodos([...todos, res.data]));
+      .then((res) => {
+        setTodos([...todos, res.data]);
+        e.target[0].value = "";
+      });
   };
 
   const handleDelete = (id) => {
@@ -63,7 +66,9 @@ function App() {
             className="mr-4 w-full"
             type="text"
             placeholder="add new to do"
-            onChange={(e) => setNewTodos(e.target.value)}
+            onChange={(e) => {
+              setNewTodos(e.target.value);
+            }}
           />
           <button className="bg-blue-800 px-9 py-2 text-white" type="submit">
             Add
